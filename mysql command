@@ -42,6 +42,10 @@ WHERE tution>=12000;
 step3. SELECT id,name,tution FROM student
 WHERE tution>=14000;
 
+step4. SELECT fid, (salary+salary*.10) as updetde_salary FROM facality;
+ste5. SELECT MAX(salary) as Maximum_salary FROM facality;
+step6 SELECT MAX(salary) as Maximum_salary,AVG(salary) FROM facality;
+
 ***New Column insert valu***
 UPDATE  facality
 SET salary=23000 WHERE fid=101;

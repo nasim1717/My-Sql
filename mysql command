@@ -1,0 +1,51 @@
+***Table Delete****
+DROP TABLE facality;
+
+***Table create***
+CREATE TABLE student(
+    id int,
+    name varchar(20),
+    dept varchar(10),
+    primary key(id)
+);
+
+***Add column***
+ALTER TABLE student
+ADD COLUMN tution int;
+
+***Delete Column ***
+ALTER TABLE facality
+DROP salary;
+
+***Value inset***
+INSERT INTO student
+VALUES (101,"MD Nasim Reza","CSE",13000),
+(102,"MD Aziz","CSE",11000),
+(103,"MD Sajed","CSE",14000),
+(104,"MD. Feroz","CSE",10000),
+(105,"MD Efian","CSE",15000);
+
+***All Data show***
+SELECT * FROM student;
+
+***Column Data Show***
+step1. SELECT id FROM student;
+step2. SELECT id,tution FROM student;
+
+***Where Conditon use***
+step1. SELECT tution FROM student
+WHERE tution>=12000;
+
+step2. SELECT id, tution FROM student
+WHERE tution>=12000;
+
+step3. SELECT id,name,tution FROM student
+WHERE tution>=14000;
+
+***New Column insert valu***
+UPDATE  facality
+SET salary=23000 WHERE fid=101;
+
+UPDATE facality
+SET slary=23000,
+WHERE fid BETWEEN 102 AND 104;

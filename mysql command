@@ -53,3 +53,30 @@ SET salary=23000 WHERE fid=101;
 UPDATE facality
 SET slary=23000,
 WHERE fid BETWEEN 102 AND 104;
+
+***Delete row data***
+DELETE FROM facality
+WHERE fid=103;
+
+***Distinct use***
+ELECT DISTINCT City FROM student;
+
+***Limit use***
+step1.SELECT * FROM student
+LIMIT 4;
+step2. SELECT * FROM student
+LIMIT 2,3;
+
+***Order by claue***
+step1. SELECT name FROM student //assending oreder;
+ORDER BY name;
+step2. SELECT id,name FROM student //assending oreder;
+ORDER BY name;
+step3. SELECT id,name FROM student //dessending oreder
+ORDER BY name DESC;
+step4. SELECT id,name,tution FROM student //multiple column sorted
+ORDER BY name,tution;
+
+***Certesian Product***
+SELECT * FROM
+student,facality;

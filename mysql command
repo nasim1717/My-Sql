@@ -83,3 +83,7 @@ ORDER BY name,tution;
 ***Certesian Product***
 SELECT * FROM
 student,facality;
+
+***Betwen operation***
+SELECT id,name ,Gender FROM student
+WHERE id BETWEEN 102 AND  104;

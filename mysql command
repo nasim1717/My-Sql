@@ -87,3 +87,16 @@ student,facality;
 ***Betwen operation***
 SELECT id,name ,Gender FROM student
 WHERE id BETWEEN 102 AND  104;
+
+***And / OR operation***
+step1. SELECT* FROM student
+WHERE Gender="Male" OR Cgp>3.50;
+
+step 2. SELECT* FROM student
+WHERE Gender="Male" AND Cgp>3.55;
+
+step3.SELECT * FROM student
+WHERE City="Meherpur"
+			AND
+            (Gender="Male" OR Cgp>=3.50);
+

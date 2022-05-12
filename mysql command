@@ -100,3 +100,29 @@ WHERE City="Meherpur"
 			AND
             (Gender="Male" OR Cgp>=3.50);
 
+
+***IN / NOT IN Operator use***
+step1. SELECT * FROM student
+WHERE City IN ("Meherpur", "Cumilla", "Nator");
+
+step2. SELECT * FROM student
+WHERE City NOT IN("Meherpur", "Cumilla", "Nator");
+
+***String Search(By Like)***
+step1. SELECT City,name FROM student
+WHERE name LIKE '%a';
+
+step2.SELECT id,City,name FROM student
+WHERE name LIKE '%sim%';
+
+step3. SELECT id,City,name FROM student
+WHERE name LIKE '%z%';
+
+step4.SELECT id,City,name FROM student
+WHERE name LIKE 'Md%';
+
+step5. SELECT id,City,name FROM student
+WHERE name LIKE '___n%';
+
+step5.SELECT name,id,City FROM student
+WHERE name RLIKE '^[maef]';

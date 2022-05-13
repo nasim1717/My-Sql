@@ -126,3 +126,21 @@ WHERE name LIKE '___n%';
 
 step5.SELECT name,id,City FROM student
 WHERE name RLIKE '^[maef]';
+
+***INER JOIN***
+step1. SELECT A.std_id,std_name, std_blood FROM tbl_student A
+INNER JOIN tbl_marks B
+ON A.std_id=B.std_id;
+
+step2.SELECT A.std_id,std_name,std_gender,thirty,mid,final FROM tbl_student A
+INNER JOIN tbl_marks B ON A.std_id=B.std_id
+WHERE std_gender='F' AND mid>=25;
+
+stp3. SELECT A.std_id ,thirty,mid,final FROM tbl_student A
+INNER JOIN tbl_marks B 
+ON A.std_id=B.std_id
+WHERE std_gender='M' and mid+final+thirty>=90;
+
+***Group BY***
+SELECT std_gender,COUNT(std_id) as id_count FROM tbl_student
+GROUP BY std_gender;

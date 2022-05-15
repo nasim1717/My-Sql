@@ -1,0 +1,14 @@
+***NOt null use***
+step1. SELECT std_blood FROM tbl_student
+WHERE std_blood !='';
+
+***INER JOIN***
+1. SELECT A.std_id,std_name,std_moblie, thirty+mid+final AS total_marks FROM tbl_student A
+INNER JOIN tbl_marks B ON A.std_id=B.std_id 
+WHERE thirty+mid+final>=80 AND std_course = 'CSE-101';
+
+***LEFT JOIN***
+2. SELECT A.std_name,std_blood ,std_waiver FROM tbl_student A
+LEFT JOIN tbl_fees B
+ON A.std_id=B.std_id
+WHERE std_waiver<10000;

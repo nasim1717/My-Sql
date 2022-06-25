@@ -1,0 +1,13 @@
+CREATE TABLE profile(
+    email varchar(35) PRIMARY KEY,
+    name varchar(45),
+    number varchar(11),
+    age int,
+    religion varchar(12),
+    gender varchar(10),
+    height decimal(3,2),
+    occupation varchar(20),
+    education varchar(30),
+    more_about_me varchar(1000)
+    
+);

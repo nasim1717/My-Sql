@@ -1,0 +1,66 @@
+<?php
+    require('connect.inc.php');
+    if($conn->connect_errno){
+        die("Connection failed:". $conn->connect_errno);
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>login</title>
+</head>
+<body>
+    <?php
+        if(isset($_POST['email'])){
+            $mail = $_POST['email'];
+            $pass = $_POST['password'];
+            if(!empty($mail) && !empty($pass)){
+                $sql = "SELECT email from registration WHERE email='$mail' AND password=$pass";
+                $cheking_mail_pass = mysqli_query($conn,$sql); ///email and password ace kina check
+                $check = mysqli_num_rows($cheking_mail_pass);
+                if($check==TRUE){
+                    $sql = "UPDATE curent SET email='$mail' WHERE id=1;";
+                    $conn->query($sql);
+                    header("location:picture.php");
+                }
+                else{
+                    $sql = "SELECT email from registration WHERE email='$mail'";
+                    $checking_mail = mysqli_query($conn,$sql);
+                    $check_mail = mysqli_num_rows($checking_mail);
+                    if($check_mail==FALSE)
+                        echo 'Apnar kono account nai';
+                    if($check_mail==TRUE){ /// invalid pssword check
+                        $sql = "SELECT email from registration WHERE email='$mail' AND password=$pass";
+                        $checking_mail_pass = mysqli_query($conn,$sql);
+                        $check = mysqli_num_rows($checking_mail_pass);
+                        if($check==FALSE)
+                            echo 'sorry password invalid'; ///englis likhte hobe
+                    }
+                }
+            }
+            else{
+                echo "enter the information";
+            }
+        }
+    ?>
+    <section>
+        <div class="login-div">
+            <form action="login.php" method="POST">
+                <input placeholder="বৈদ্যুতিক মেইল" type="email" name="email">
+                <input placeholder="গুপ্তমন্ত্র" type="password" name="password">
+                <input class="sub-btn" value="দাখিল" type="submit">
+            </form>
+        </div>
+        <div class="nav-bar">
+            <a href="./index.php"><button>home</button></a>
+
+            <a href="./singUp.php"><button>singUp</button></a>
+        </div>
+    </section>
+</body>
+</html>

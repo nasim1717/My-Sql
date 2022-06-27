@@ -1,0 +1,73 @@
+<?php
+    require('connect.inc.php');
+    
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Ducument</title>
+</head>
+<body>
+    <?php
+         //$mail = $_GET['email'];
+       // echo $getmail;
+        if(isset($_POST['name'])){
+            $nam = $_POST['name'];
+            $numb = $_POST['number'];
+            $age = $_POST['age'];
+            $religion = $_POST['religion'];
+            $gender = $_POST['gender'];
+            $height = $_POST['height'];
+            $occupation = $_POST['occupation'];
+            $edu = $_POST['education'];
+            $more_about = $_POST['more_about_me'];
+            $sql = "SELECT * from curent;";
+            $result = mysqli_query($conn,$sql);
+            $result_row = mysqli_num_rows($result);
+            if($result_row>0){
+                while($row = mysqli_fetch_assoc($result))
+                    $mail = $row['email'];
+            }
+            //echo $mail;
+            if(!empty($nam) && !empty($numb) && !empty($age) && !empty($religion) && !empty($gender) && !empty($height) && !empty($occupation) && !empty($edu) && !empty($more_about)){
+                $sql = "UPDATE information SET name='$nam', number='$numb', age='$age', religion='$religion', gender='$gender', height='$height', 
+                        occupation='$occupation', education='$edu', more_about_me='$more_about' WHERE email='$mail'";
+                if($conn->query($sql)==TRUE)
+                    echo 'all data inserted'; ///english likhte hobe
+                else{
+                    echo "not data inserted please try agin"; ///english likhte hobe
+                }
+            }
+            else{
+                echo 'enter the information';
+            }
+
+        }
+    ?>
+    <section>
+
+        <div class="dash-board">
+            <form action="information.php" method="POST">
+
+                <input placeholder="নাম" type="text" name="name">
+                <input placeholder="নাম্বার" type="number" name="number">
+                <input placeholder="বয়স" type="text" name="age">
+                <input placeholder="ধর্ম" type="text" name="religion">
+                <input placeholder="লিঙ্গ" type="text" name="gender">
+                <input placeholder="উচ্চতা" type="text" name="height">
+                <input placeholder="পেশা" type="text" name="occupation">
+                <input placeholder="শিক্ষা" type="text" name="education">
+                <input placeholder="আমার ব্যাপারে আরও" type="text" name="more_about_me">
+                <input value="দাখিল" type="submit">
+
+            </form>
+        </div>
+
+    </section>
+</body>
+</html>

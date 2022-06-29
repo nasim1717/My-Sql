@@ -1,0 +1,34 @@
+<?php
+    require('connect.inc.php');
+   // $getmail =  $_GET['email'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>profile</title>
+</head>
+<body>
+    <?php
+        // $getmail =  $_GET['email'];
+         //echo $getmail;
+        $sql = "SELECT email,image from information;";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result)){
+            $img = $row['image'];
+            $mail = $row['email'];
+           ?>
+           <a href="details.php?email=<?php echo $mail;?>"><img src="picture/<?php echo $img?>"width=220 height=260></a>;                 <!--echo "<img src='picture/$img'>";!-->
+            <?php
+        }
+    ?>
+    <section>
+        <div class="profile">
+
+        </div>
+    </section>
+</body>
+</html>

@@ -19,15 +19,26 @@
         if(isset($_POST['email'])){
             $mail = $_POST['email'];
             $pass = $_POST['password'];
-            if(!empty($mail) && !empty($pass)){
-                $sql = "SELECT email from registration WHERE email='$mail' AND password=$pass";
+            if(!empty($mail) && !empty($pass)){ ///email and password emptye chek
+                $sql = "SELECT email from registration WHERE email='$mail' AND password='$pass'";
                 $cheking_mail_pass = mysqli_query($conn,$sql); ///email and password ace kina check
                 $check = mysqli_num_rows($cheking_mail_pass);
                 if($check==TRUE){
                     $sql = "UPDATE curent SET email='$mail' WHERE id=1;";
                     $conn->query($sql);
-                    header("location:picture.php");
+                    $sql = "SELECT * from information WHERE email='$mail';";
+                    $chek_nam = mysqli_query($conn,$sql);
+                    $chek_row = mysqli_num_rows($chek_nam);
+                    if($chek_row>0){
+                        while($row = mysqli_fetch_assoc($chek_nam)){
+                            if($row['name']==NULL && $row['number']==NULL){
+                                header("location:information.php"); ///information pages
+                            }
+                            else header("location:home.php"); ////home page 
+                        }
+                    }
                 }
+                ///cheking gamil or password ivalid kina
                 else{
                     $sql = "SELECT email from registration WHERE email='$mail'";
                     $checking_mail = mysqli_query($conn,$sql);

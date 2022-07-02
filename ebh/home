@@ -1,6 +1,7 @@
 <?php
     require('connect.inc.php');
-   // $getmail =  $_GET['email'];
+    if(isset($_GET['email']))
+        $profile_mail =  $_GET['email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
-    <title>profile</title>
+    <title>home</title>
 </head>
 <body>
     <?php
@@ -26,9 +27,10 @@
         }
     ?>
     <section>
-        <div class="profile">
+        <div class="home">
 
         </div>
     </section>
+    <a href="myprofile.php?email=<?php echo $profile_mail;?>"><h2>My Profile</h2> </a>
 </body>
 </html>

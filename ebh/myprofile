@@ -1,0 +1,61 @@
+<?php
+    require("connect.inc.php");
+   if(isset($_GET['email'])){
+        $mail = $_GET['email'];
+   }
+   $sql = "SELECT * from information WHERE email='$mail';";
+   $result = mysqli_query($conn,$sql);
+       // while($pic = mysqli_fetch_assoc($result))
+           // $picture = $pic['image'];
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detils</title>
+</head>
+<body>
+    <table align="center" border="1px" style="width:600px; line-height:20px;">
+        
+        
+        <tr>
+            <th colspane="3"><h2><?php echo $mail;?></h2></th>
+        </tr>
+        <t>
+            <th> gmail </th>
+            <th> name </th>
+            <th> number </th>
+            <th> age </th>
+            <th> religion </th>
+            <th> gender </th>
+            <th> height </th>
+            <th> occupation </th>
+            <th> education </th>
+            <th> more about me </th>
+        </t>
+        <?php 
+            while($row = mysqli_fetch_assoc($result)){
+                //$pic = $row['image'];
+           ?>
+           <img src="picture/<?php echo $row['image'];?>" width="220" height="260">
+           <tr>
+                <td><?php echo $row['email'] ?></td>
+                <td><?php echo $row['name'] ?></td>
+                <td><?php echo $row['number'] ?></td>
+                <td><?php echo $row['age'] ?></td>
+                <td><?php echo $row['religion'] ?></td>
+                <td><?php echo $row['gender'] ?></td>
+                <td><?php echo $row['height'] ?></td>
+                <td><?php echo $row['occupation'] ?></td>
+                <td><?php echo $row['education'] ?></td>
+                <td><?php echo $row['more_about_me'] ?></td>
+           </tr>
+           
+            <?php
+            }
+        ?>
+    </table>
+    <a href="update.php?email=<?php echo $mail;?>"><h2>Update information</h2></a>
+</body>
+</html>

@@ -24,17 +24,17 @@
                 $cheking_mail_pass = mysqli_query($conn,$sql); ///email and password ace kina check
                 $check = mysqli_num_rows($cheking_mail_pass);
                 if($check==TRUE){
-                    $sql = "UPDATE curent SET email='$mail' WHERE id=1;";
-                    $conn->query($sql);
+                    ///$sql = "UPDATE curent SET email='$mail' WHERE id=1;"; ///update email
+                   // $conn->query($sql);
                     $sql = "SELECT * from information WHERE email='$mail';";
                     $chek_nam = mysqli_query($conn,$sql);
                     $chek_row = mysqli_num_rows($chek_nam);
                     if($chek_row>0){
                         while($row = mysqli_fetch_assoc($chek_nam)){
                             if($row['name']==NULL && $row['number']==NULL){
-                                header("location:information.php"); ///information pages
+                                header("location:information.php?email=$mail"); ///information pages
                             }
-                            else header("location:home.php"); ////home page 
+                            else header("location:home.php?email=$mail"); ////home page 
                         }
                     }
                 }

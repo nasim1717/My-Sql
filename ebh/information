@@ -1,5 +1,8 @@
 <?php
-    require('connect.inc.php');    
+    require('connect.inc.php');  
+    if(isset($_GET['email'])){
+       $mail = $_GET['email'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +18,9 @@
     <?php
          //$mail = $_GET['email'];
        // echo $getmail;
-        if(isset($_POST['name'])){
+        if(isset($_POST['name'])  && isset($_GET['email'])){
             $nam = $_POST['name'];
+            $mail = $_GET['email'];
             $numb = $_POST['number'];
             $age = $_POST['age'];
             $religion = $_POST['religion'];
@@ -29,13 +33,14 @@
           $filetype = $_FILES['image']['type']; ///image type
          /// echo  $filetype.'\r\n'; 
           $tmpname = $_FILES['image']['tmp_name']; ///location picture temp varivale
-            $sql = "SELECT * from curent;";
+   
+           /* $sql = "SELECT * from curent;";  ///curent table
             $result = mysqli_query($conn,$sql);
             $result_row = mysqli_num_rows($result);
             if($result_row>0){
                 while($row = mysqli_fetch_assoc($result))
                     $mail = $row['email'];
-            }
+            }*/
 
             ///file uplode jpeg or png chek and any data empty chek
             if(($filetype == 'image/png' or $filetype == 'image/jpeg') && !empty($nam) && !empty($numb) && !empty($age) && !empty($religion) && !empty($gender) && !empty($height) && !empty($occupation) && !empty($edu) && !empty($more_about)){
@@ -57,7 +62,7 @@
     <section>
 
         <div class="dash-board">
-            <form action="information.php" method="POST" enctype="multipart/form-data">
+            <form action="information.php?email=<?php echo $mail;?>" method="POST" enctype="multipart/form-data">
 
                 <input placeholder="নাম" type="text" name="name">
                 <input placeholder="নাম্বার" type="number" name="number">

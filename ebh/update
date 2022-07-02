@@ -1,0 +1,111 @@
+<?php
+    require('connect.inc.php');  
+    if(isset($_GET['email'])){
+       $mail = $_GET['email'];
+    }
+    $sql = "SELECT * from information WHERE email='$mail'";
+    $result = mysqli_query($conn,$sql);
+    while($row = mysqli_fetch_assoc($result)){
+        $nam = $row['name'];
+        $mail = $row['email'];
+        $numb = $row['number'];
+        $age = $row['age'];
+        $religion = $row['religion'];
+        $gender = $row['gender'];
+        $height = $row['height'];
+        $occupation = $row['occupation'];
+        $edu = $row['education'];
+        $more_about = $row['more_about_me'];
+     // $img = $_FILES['image']['name'];   ////images files
+      //$filetype = $_FILES['image']['type']; ///image type
+     /// echo  $filetype.'\r\n'; 
+      //$tmpname = $_FILES['image']['tmp_name']; ///lo
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Update</title>
+</head>
+<body>
+    <?php
+         //$mail = $_GET['email'];
+       // echo $getmail;
+        if(isset($_POST['name'])  && isset($_GET['email'])){
+            $nam = $_POST['name'];
+            $mail = $_GET['email'];
+            $numb = $_POST['number'];
+            $age = $_POST['age'];
+            $religion = $_POST['religion'];
+            $gender = $_POST['gender'];
+            $height = $_POST['height'];
+            $occupation = $_POST['occupation'];
+            $edu = $_POST['education'];
+            $more_about = $_POST['more_about_me'];
+          $img = $_FILES['image']['name'];   ////images files
+          $filetype = $_FILES['image']['type']; ///image type
+         /// echo  $filetype.'\r\n'; 
+          $tmpname = $_FILES['image']['tmp_name']; ///location picture temp varivale
+   
+           /* $sql = "SELECT * from curent;";  ///curent table
+            $result = mysqli_query($conn,$sql);
+            $result_row = mysqli_num_rows($result);
+            if($result_row>0){
+                while($row = mysqli_fetch_assoc($result))
+                    $mail = $row['email'];
+            }*/
+
+            ///file uplode jpeg or png chek and any data empty chek and all data update
+            if(($filetype == 'image/png' or $filetype == 'image/jpeg') && !empty($nam) && !empty($numb) && !empty($age) && !empty($religion) && !empty($gender) && !empty($height) && !empty($occupation) && !empty($edu) && !empty($more_about) && !empty($img)){
+                move_uploaded_file($tmpname,'picture/'.$img); ///file image upload    
+                $sql = "UPDATE information SET name='$nam', number='$numb', age='$age', religion='$religion', gender='$gender', height='$height', 
+                        occupation='$occupation', education='$edu', more_about_me='$more_about', image ='$img' WHERE email='$mail';";
+                if($conn->query($sql)==TRUE)
+                    echo 'all data inserted'; ///english likhte hobe
+                else{
+                    echo "not data inserted please try agin"; ///english likhte hobe
+                }
+            } ///image empty hole update hobe
+            else if(empty($img) && !empty($nam) && !empty($numb) && !empty($age) && !empty($religion) && !empty($gender)  && !empty($height) && !empty($occupation) && !empty($edu) && !empty($more_about)){
+                $sql = "UPDATE information SET name='$nam', number='$numb', age='$age', religion='$religion', gender='$gender', height='$height', 
+                        occupation='$occupation', education='$edu', more_about_me='$more_about'  WHERE email='$mail';";
+                if($conn->query($sql)==TRUE)
+                    echo 'all data update'; ///english likhte hobe
+                else{
+                    echo "not data update please try agin"; ///english likhte hobe
+                }
+            }
+            else{        
+                echo 'enter the information'; ///english likhte hobe
+            }
+
+        }
+    ?>
+    <section>
+
+        <div class="dash-board">
+            <form action="update.php?email=<?php echo $mail;?>" method="POST" enctype="multipart/form-data">
+
+                <input placeholder="নাম" type="text" name="name" value="<?php echo $nam;?>"> 
+                <input placeholder="নাম্বার" type="number" name="number" value="<?php echo $numb;?>">
+                <input placeholder="বয়স" type="text" name="age" value="<?php echo $age;?>">
+                <input placeholder="ধর্ম" type="text" name="religion" value="<?php echo $religion;?>">
+                <input placeholder="লিঙ্গ" type="text" name="gender" value="<?php echo $gender;?>">
+                <input placeholder="উচ্চতা" type="text" name="height" value="<?php echo $height;?>">
+                <input placeholder="পেশা" type="text" name="occupation" value="<?php echo $occupation;?>">
+                <input placeholder="শিক্ষা" type="text" name="education" value="<?php echo $edu;?>">
+                <input placeholder="আমার ব্যাপারে আরও" type="text" name="more_about_me" value="<?php echo $more_about;?>">
+ ছবি অ্যাড করুন: <input type="file" name="image">
+                <input value="দাখিল" type="submit">
+
+            </form>
+        </div>
+
+    </section>
+</body>
+</html>

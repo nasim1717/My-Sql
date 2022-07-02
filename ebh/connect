@@ -1,0 +1,10 @@
+<?php
+    $hostname = 'localhost';
+    $username = 'root';
+    $pas = '';
+    $dbms_name = 'ebh';
+    $conn = new mysqli($hostname,$username,$pas,$dbms_name);
+    if($conn->connect_errno){
+        die("Connection failed:". $conn->connect_errno);
+    }
+?>

@@ -1,0 +1,8 @@
+//1484. Group Sold Products By The Date
+
+SELECT sell_date, COUNT(DISTINCT product) as num_sold, GROUP_CONCAT(DISTINCT product ORDER BY product) AS products FROM activities
+GROUP BY sell_date;
+
+
+/// another way separator any charcter use
+//// GROUP_CONCAT(DISTINCT product separator ',' ORDER BY product)

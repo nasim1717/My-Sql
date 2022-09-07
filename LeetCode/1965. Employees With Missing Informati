@@ -1,0 +1,14 @@
+/// 1965. Employees With Missing Informati
+
+SELECT A.employee_id FROM (SELECT employee_id FROM employees UNION SELECT employee_id FROM salaries) AS A
+LEFT JOIN salaries S ON A.employee_id=S.employee_id
+LEFT JOIN employees E ON E.employee_id=A.employee_id
+WHERE E.name IS NULL OR S.salary IS NULL
+ORDER BY A.employee_id;
+
+****------******
+SELECT A.employee_id,S.salary, E.name FROM (SELECT employee_id FROM employees UNION SELECT employee_id FROM salaries) AS A
+LEFT JOIN salaries S ON A.employee_id=S.employee_id
+LEFT JOIN employees E ON E.employee_id=A.employee_id
+WHERE 
+

@@ -1,0 +1,10 @@
+////1795. Rearrange Products Table
+
+SELECT product_id,'store1' as store, A.store1 as price FROM products A
+WHERE A.store1 IS NOT NULL
+	UNION 
+		SELECT product_id,'store2' as store, B.store2 AS price FROM products B
+        WHERE B.store2 IS NOT NULL
+        UNION
+        SELECT product_id,'store3' AS store,C.store3 AS price FROM products C
+        WHERE C.store3 IS NOT NULL ORDER BY product_id;

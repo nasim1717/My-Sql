@@ -216,3 +216,8 @@ WHERE A.store1 IS NOT NULL
         UNION
         SELECT product_id,'store3' AS store,C.store3 AS price FROM products C
         WHERE C.store3 IS NOT NULL ORDER BY product_id;
+	
+***176. Second Highest Salary***
+
+SELECT MAX(salary) AS SecondHighestSalary FROM employee
+WHERE salary<(SELECT MAX(salary)FROM employee);

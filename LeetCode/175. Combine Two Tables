@@ -1,0 +1,5 @@
+//175. Combine Two Tables
+
+SELECT firstName,lastName,city,state FROM  person P
+LEFT JOIN address A ON p.personId=A.personId
+ORDER BY firstName;

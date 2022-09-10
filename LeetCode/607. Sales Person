@@ -1,0 +1,6 @@
+///607. Sales Person
+
+SELECT name FROM salesperson
+WHERE sales_id NOT IN (SELECT sales_id FROM orders A 
+                       INNER JOIN company B ON A.com_id=B.com_id
+                       WHERE name='RED');

@@ -227,3 +227,8 @@ WHERE salary<(SELECT MAX(salary)FROM employee);
 SELECT activity_date AS day, COUNT(DISTINCT user_id) AS active_users FROM activity
 WHERE (activity_date >= '2019-06-28' AND activity_date<='2019-06-30') OR (activity_date>='2019-07-01' AND activity_date<='2019-07-27')
 GROUP BY activity_date;
+
+***1693. Daily Leads and Partners***///Group by special case
+
+SELECT date_id,make_name,COUNT(DISTINCT lead_id) AS  unique_leads, COUNT(DISTINCT partner_id) AS unique_partners  FROM dailysales
+GROUP BY date_id,make_name;

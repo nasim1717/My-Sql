@@ -1,0 +1,4 @@
+///1393. Capital Gain/Loss
+
+SELECT A.stock_name,p1-p2 AS capital_gain_loss FROM (SELECT stock_name,SUM(price)AS p1 FROM stocks WHERE operation='Sell' GROUP BY stock_name) as A,(SELECT stock_name,SUM(price)AS p2 FROM stocks WHERE operation='Buy' GROUP BY stock_name) AS B
+WHERE A.Stock_name=B.stock_name;

@@ -1,0 +1,6 @@
+///1407. Top Travellers
+
+SELECT name, CASE WHEN R.distance IS NULL THEN 0 ELSE sum(distance) END AS travelled_distance  FROM users U 
+LEFT JOIN rides R ON U.id=R.user_id
+GROUP BY u.id
+ORDER BY  travelled_distance DESC, name asc;

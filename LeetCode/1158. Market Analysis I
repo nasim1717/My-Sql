@@ -1,0 +1,5 @@
+//1158. Market Analysis I
+
+SELECT  U.user_id AS buyer_id, U.join_date,COUNT(O.order_date) as orders_in_2019 FROM users U 
+LEFT JOIN orders O ON U.user_id=O.buyer_id and year(O.order_date)='2019'
+GROUP BY U.user_id;

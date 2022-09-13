@@ -1,0 +1,5 @@
+//// 1587. Bank Account Summary II
+
+SELECT U.name,B.sumation AS balance FROM users U,(SELECT account, sum(amount) AS sumation FROM transactions
+GROUP BY account) AS B
+WHERE U.account=B.account AND B.sumation>=10000;

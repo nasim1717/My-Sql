@@ -1,0 +1,5 @@
+////182. Duplicate Emails
+
+SELECT email as Email  FROM person
+GROUP BY email
+HAVING COUNT(email)>=2;

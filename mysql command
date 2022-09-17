@@ -257,3 +257,35 @@ GROUP BY event_day,emp_id;
 
 SELECT A.stock_name,p1-p2 AS capital_gain_loss FROM (SELECT stock_name,SUM(price)AS p1 FROM stocks WHERE operation='Sell' GROUP BY stock_name) as A,(SELECT stock_name,SUM(price)AS p2 FROM stocks WHERE operation='Buy' GROUP BY stock_name) AS B
 WHERE A.Stock_name=B.stock_name;
+
+***1407. Top Travellers***
+SELECT name, CASE WHEN R.distance IS NULL THEN 0 ELSE sum(distance) END AS travelled_distance  FROM users U 
+LEFT JOIN rides R ON U.id=R.user_id
+GROUP BY u.id
+ORDER BY  travelled_distance DESC, name asc;
+
+***1158. Market Analysis I***
+SELECT  U.user_id AS buyer_id, U.join_date,COUNT(O.order_date) as orders_in_2019 FROM users U 
+LEFT JOIN orders O ON U.user_id=O.buyer_id and year(O.order_date)='2019'
+GROUP BY U.user_id;
+
+***182. Duplicate Emails***
+SELECT email as Email  FROM person
+GROUP BY email
+HAVING COUNT(email)>=2;
+
+***1050. Actors and Directors Who Cooperated At Least Three Times***
+SELECT actor_id,director_id FROM actordirector
+GROUP BY actor_id,director_id
+HAVING COUNT(actor_id)>=3;
+
+***1587. Bank Account Summary II***
+SELECT U.name,B.sumation AS balance FROM users U,(SELECT account, sum(amount) AS sumation FROM transactions
+GROUP BY account) AS B
+WHERE U.account=B.account AND B.sumation>=10000;
+
+***1084. Sales Analysis III***
+SELECT S.product_id,P.product_name from sales S
+LEFT JOIN product P ON S.product_id=P.product_id
+GROUP BY S.product_id
+HAVING  min(S.sale_date)>='2019-01-01' AND  max(S.sale_date)<='2019-03-31';

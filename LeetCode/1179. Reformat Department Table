@@ -1,0 +1,16 @@
+///1179. Reformat Department Table
+
+SELECT id,sum(case WHEN month='Jan' THEN revenue ELSe null END) AS Jan_revenue,
+sum(case WHEN month='Feb' THEN revenue ELSe null END) AS Feb_revenue,
+sum(case WHEN month='Mar' THEN revenue ELSe null END) AS Mar_revenue,
+sum(case WHEN month='Apr' THEN revenue ELSe null END) AS Apr_revenue,
+sum(case WHEN month='May' THEN revenue ELSe null END) AS May_revenue,
+sum(case WHEN month='Jun' THEN revenue ELSe null END) AS Jun_revenue,
+sum(case WHEN month='Jul' THEN revenue ELSe null END) AS Jul_revenue,
+sum(case WHEN month='Aug' THEN revenue ELSe null END) AS Aug_revenue,
+sum(case WHEN month='Sep' THEN revenue ELSe null END) AS Sep_revenue,
+sum(case WHEN month='Oct' THEN revenue ELSe null END) AS Oct_revenue,
+sum(case WHEN month='Nov' THEN revenue ELSe null END) AS Nov_revenue,
+sum(case WHEN month='Dec' THEN revenue ELSe null END) AS Dec_revenue
+FROM department
+GROUP BY id;

@@ -1,0 +1,7 @@
+//// 608. Tree Node
+
+SELECT A.id,CASE WHEN A.p_id IS null THEN 'Root' WHEN B.child_cnt>0 THEN 'Inner' WHEN B.child_cnt IS null THEN 'Leaf' END AS type FROM tree A
+LEFT JOIN 
+(SELECT p_id,COUNT(p_id)as child_cnt FROM tree
+GROUP BY p_id
+HAVING p_id IS NOT null) B ON A.id=B.p_id;

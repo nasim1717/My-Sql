@@ -1,0 +1,8 @@
+///184. Department Highest Salary
+
+SELECT B.Department,A.name AS Employee,A.salary AS Salary FROM employee A 
+LEFT JOIN  (SELECT D.id,D.name AS 'Department', E.name AS 'Employee', max(E.salary) AS salary FROM employee E 
+LEFT JOIN department D ON E.departmentId=D.id
+GROUP BY D.id
+) B ON A.salary=B.salary AND A.departmentId=B.id
+WHERE B.Department IS NOT null;

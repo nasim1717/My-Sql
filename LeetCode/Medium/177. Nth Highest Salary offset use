@@ -6,7 +6,7 @@ set N = N-1;
   RETURN (
       SELECT DISTINCT Salary FROM employee
         ORDER BY Salary DESC
-        LIMIT 1 OFFSET N //// 1 hocse koyta dekhabe r N hocse kothai thke shuru korbe
+        LIMIT 1 OFFSET N //// 1 hocse koyta dekhabe r N hocse kothai thke shuru korbe jokhon offset use korbo tokhon index 0 thke shuru hobe N er man ja hobe tar thke 1 kom hobe
       
   );
 END

@@ -1,0 +1,7 @@
+///Second Highest Goal Scorer
+
+SELECT  B.player,B.team,B.goals_scored,B.played FROM
+(SELECT max(goals_scored) as scor  FROM Goals where goals_scored < (select max(goals_scored) from Goals) ) A
+JOIN Goals B ON A.scor=B.goals_scored
+
+ORDER BY B.player ASC;

@@ -1,0 +1,12 @@
+/// 177. Nth Highest Salary
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+set N = N-1;
+  RETURN (
+      SELECT DISTINCT Salary FROM employee
+        ORDER BY Salary DESC
+        LIMIT 1 OFFSET N //// 1 hocse koyta dekhabe r N hocse kothai thke shuru korbe
+      
+  );
+END

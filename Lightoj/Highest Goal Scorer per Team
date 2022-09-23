@@ -1,0 +1,7 @@
+///Highest Goal Scorer per Team
+
+SELECT B.player,A.team,A.scor AS "goals_scored",B.played FROM (SELECT team,max(goals_scored) as scor FROM Goals
+GROUP BY team) A 
+RIGHT JOIN Goals B on A.team=B.team AND A.scor=B.goals_scored
+WHERE A.team IS NOT null
+ORDER BY A.team ASC,B.player ASC;
